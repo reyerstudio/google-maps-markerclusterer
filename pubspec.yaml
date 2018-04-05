@@ -1,6 +1,6 @@
 name: google_maps_markerclusterer
 description: Creates and manages per-zoom-level clusters for large amounts of markers.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/reyerstudio/google-maps-markerclusterer
 author: Stéphane Este-Gracias <sestegra@gmail.com>
 
