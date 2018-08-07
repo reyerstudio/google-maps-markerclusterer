@@ -18,14 +18,13 @@ Future<Null> main() async {
         ..center = center
         ..mapTypeId = MapTypeId.ROADMAP);
 
-  Map data = JSON.decode(await HttpRequest.getString('data.json'));
+  Map data = json.decode(await HttpRequest.getString('data.json'));
 
   List<Marker> markers = [];
   for (var i = 0; i < 100; i++) {
     Map dataPhoto = data['photos'][i];
     var latLng = new LatLng(dataPhoto['latitude'], dataPhoto['longitude']);
-    var marker = new Marker()
-      ..position = latLng;
+    var marker = new Marker()..position = latLng;
     markers.add(marker);
   }
 
