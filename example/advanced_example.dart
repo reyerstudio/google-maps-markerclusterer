@@ -81,10 +81,11 @@ List<List<MarkerClustererStyle>> styles = [
 var markerClusterer = null;
 var map = null;
 Map data = null;
-var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
+var imageUrl =
+    'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
 
 Future<Null> main() async {
-  data = JSON.decode(await HttpRequest.getString('data.json'));
+  data = json.decode(await HttpRequest.getString('data.json'));
 
   map = new GMap(
       document.getElementById('map'),
@@ -109,7 +110,8 @@ void refreshMap() {
     ..url = imageUrl
     ..size = new Size(24, 32);
   for (var i = 0; i < 1000; ++i) {
-    var latLng = new LatLng(data['photos'][i]['latitude'], data['photos'][i]['longitude']);
+    var latLng = new LatLng(
+        data['photos'][i]['latitude'], data['photos'][i]['longitude']);
     var marker = new Marker()
       ..position = latLng
       ..draggable = true
@@ -117,9 +119,12 @@ void refreshMap() {
     markers.add(marker);
   }
 
-  var zoom = int.parse((document.getElementById('zoom') as SelectElement)?.value ?? "10");
-  var size = int.parse((document.getElementById('size') as SelectElement)?.value ?? "10");
-  var style = int.parse((document.getElementById('style') as SelectElement)?.value ?? "10");
+  var zoom = int.parse(
+      (document.getElementById('zoom') as SelectElement)?.value ?? "10");
+  var size = int.parse(
+      (document.getElementById('size') as SelectElement)?.value ?? "10");
+  var style = int.parse(
+      (document.getElementById('style') as SelectElement)?.value ?? "10");
   zoom = zoom == -1 ? null : zoom;
   size = size == -1 ? null : size;
   style = style == -1 ? null : style;

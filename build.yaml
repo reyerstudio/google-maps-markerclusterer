@@ -1,0 +1,10 @@
+targets:
+  google_maps_markerclusterer:
+    sources:
+      include: ["lib/**", "example/**"]
+    builders:
+      js_wrapping_generator|js_wrapping:
+        enabled: True
+        generate_for:
+        - lib/src/markerclusterer.dart
+        - example/*.dart

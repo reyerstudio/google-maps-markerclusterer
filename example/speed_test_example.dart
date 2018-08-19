@@ -17,12 +17,12 @@ var infoWindow = null;
 Future<Null> main() async {
   var latlng = new LatLng(39.91, 116.38);
   var options = new MapOptions()
-    ..zoom =  2
+    ..zoom = 2
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP;
 
   map = new GMap(document.getElementById('map'), options);
-  pics = JSON.decode(await HttpRequest.getString('data.json'))['photos'];
+  pics = json.decode(await HttpRequest.getString('data.json'))['photos'];
 
   var useGmm = document.getElementById('usegmm');
 
@@ -47,7 +47,8 @@ void showMarkers() {
   markerClusterer?.clearMarkers();
 
   var panel = document.getElementById('markerlist')..innerHtml = '';
-  var numMarkers = int.parse((document.getElementById('nummarkers') as SelectElement).value);
+  var numMarkers =
+      int.parse((document.getElementById('nummarkers') as SelectElement).value);
 
   for (var i = 0; i < numMarkers; i++) {
     var titleText = pics[i]['photo_title'];
@@ -65,7 +66,8 @@ void showMarkers() {
 
     var latLng = new LatLng(pics[i]['latitude'], pics[i]['longitude']);
 
-    var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
+    var imageUrl =
+        'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
     var markerImage = new Icon()
       ..url = imageUrl
       ..size = new Size(24, 32);
@@ -94,14 +96,21 @@ Function markerClickFunction(Map pic, LatLng latlng) {
     var url = pic['photo_url'];
     var fileurl = pic['photo_file_url'];
 
-    var infoHtml = '<div class="info"><h3>' + title +
+    var infoHtml = '<div class="info"><h3>' +
+        title +
         '</h3><div class="info-body">' +
-        '<a href="' + url + '" target="_blank"><img src="' +
-        fileurl + '" class="info-img"/></a></div>' +
+        '<a href="' +
+        url +
+        '" target="_blank"><img src="' +
+        fileurl +
+        '" class="info-img"/></a></div>' +
         '<a href="http://www.panoramio.com/" target="_blank">' +
         '<img src="http://maps.google.com/intl/en_ALL/mapfiles/' +
         'iw_panoramio.png"/></a><br/>' +
-        '<a href="' + pic['owner_url'] + '" target="_blank">' + pic['owner_name'] +
+        '<a href="' +
+        pic['owner_url'] +
+        '" target="_blank">' +
+        pic['owner_name'] +
         '</a></div></div>';
 
     infoWindow.setContent(infoHtml);
@@ -111,7 +120,8 @@ Function markerClickFunction(Map pic, LatLng latlng) {
 }
 
 void clear() {
-  (document.getElementById('timetaken') as SpanElement).innerHtml = 'cleaning...';
+  (document.getElementById('timetaken') as SpanElement).innerHtml =
+      'cleaning...';
   for (var i = 0; i < markers.length; i++) {
     markers[i].map = null;
   }
@@ -134,5 +144,6 @@ void time() {
   }
 
   var end = new DateTime.now();
-  (document.getElementById('timetaken') as SpanElement).innerHtml = end.difference(start).inMicroseconds.toString();
+  (document.getElementById('timetaken') as SpanElement).innerHtml =
+      end.difference(start).inMicroseconds.toString();
 }
