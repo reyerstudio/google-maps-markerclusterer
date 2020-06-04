@@ -5,4 +5,4 @@ targets:
         generate_for:
           include:
           - lib/src/markerclusterer.dart
-          - example/*.dart
+          - example/**.dart
