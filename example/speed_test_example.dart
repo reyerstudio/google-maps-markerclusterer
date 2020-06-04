@@ -15,23 +15,23 @@ List<Marker> markers = [];
 var infoWindow = null;
 
 Future<Null> main() async {
-  var latlng = new LatLng(39.91, 116.38);
-  var options = new MapOptions()
+  var latlng = LatLng(39.91, 116.38);
+  var options = MapOptions()
     ..zoom = 2
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP;
 
-  map = new GMap(document.getElementById('map'), options);
+  map = GMap(document.getElementById('map'), options);
   pics = json.decode(await HttpRequest.getString('data.json'))['photos'];
 
   var useGmm = document.getElementById('usegmm');
 
-  event.addDomListener(useGmm, 'click', (_) => change());
+  Event.addDomListener(useGmm, 'click', (_) => change());
 
   var numMarkers = document.getElementById('nummarkers');
-  event.addDomListener(numMarkers, 'change', (_) => change());
+  Event.addDomListener(numMarkers, 'change', (_) => change());
 
-  infoWindow = new InfoWindow();
+  infoWindow = InfoWindow();
 
   showMarkers();
 }
@@ -56,28 +56,28 @@ void showMarkers() {
       titleText = 'No title';
     }
 
-    var item = new DivElement();
-    var title = new AnchorElement()
+    var item = DivElement();
+    var title = AnchorElement()
       ..href = '#'
       ..className = 'title'
       ..innerHtml = titleText;
     item.append(title);
     panel.append(item);
 
-    var latLng = new LatLng(pics[i]['latitude'], pics[i]['longitude']);
+    var latLng = LatLng(pics[i]['latitude'], pics[i]['longitude']);
 
     var imageUrl =
         'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
-    var markerImage = new Icon()
+    var markerImage = Icon()
       ..url = imageUrl
-      ..size = new Size(24, 32);
+      ..size = Size(24, 32);
 
-    var marker = new Marker()
+    var marker = Marker()
       ..position = latLng
       ..icon = markerImage;
 
-    event.addListener(marker, 'click', markerClickFunction(pics[i], latLng));
-    event.addDomListener(title, 'click', markerClickFunction(pics[i], latLng));
+    Event.addListener(marker, 'click', markerClickFunction(pics[i], latLng));
+    Event.addDomListener(title, 'click', markerClickFunction(pics[i], latLng));
     markers.add(marker);
   }
 
@@ -134,16 +134,16 @@ void change() {
 
 void time() {
   (document.getElementById('timetaken') as SpanElement).innerHtml = 'timing...';
-  var start = new DateTime.now();
+  var start = DateTime.now();
   if ((document.getElementById('usegmm') as CheckboxInputElement).checked) {
-    markerClusterer = new MarkerClusterer(map, markers);
+    markerClusterer = MarkerClusterer(map, markers);
   } else {
     for (var i = 0; i < markers.length; i++) {
       markers[i].map = map;
     }
   }
 
-  var end = new DateTime.now();
+  var end = DateTime.now();
   (document.getElementById('timetaken') as SpanElement).innerHtml =
       end.difference(start).inMicroseconds.toString();
 }

@@ -1,15 +1,20 @@
 // Copyright (c) 2017, Stéphane Este-Gracias. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-library google_maps_markerclusterer.src;
+@JS()
+library google_maps_markerclusterer;
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 part 'markerclusterer.g.dart';
 
+@JsName()
+@anonymous
 abstract class _MarkerClusterer extends OverlayView {
-  factory _MarkerClusterer(GMap map, [List<Marker> markers, MarkerClustererOptions opts]) => null;
+  factory _MarkerClusterer(GMap map,
+          [List<Marker> markers, MarkerClustererOptions opts]) =>
+      null;
 
   void addMarker(Marker marker, [bool noDraw]);
   void addMarkers(List<Marker> markers, [bool noDraw]);
@@ -32,8 +37,9 @@ abstract class _MarkerClusterer extends OverlayView {
   void setStyles(List<MarkerClustererStyle> styles);
 }
 
+@JsName()
 @anonymous
-abstract class _MarkerClustererOptions implements JsInterface {
+abstract class _MarkerClustererOptions {
   factory _MarkerClustererOptions() => null;
 
   num gridSize;
@@ -46,8 +52,9 @@ abstract class _MarkerClustererOptions implements JsInterface {
   List<MarkerClustererStyle> styles;
 }
 
+@JsName()
 @anonymous
-abstract class _MarkerClustererStyle implements JsInterface {
+abstract class _MarkerClustererStyle {
   factory _MarkerClustererStyle() => null;
 
   String url;

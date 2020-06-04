@@ -10,76 +10,76 @@ import 'package:google_maps_markerclusterer/markerclusterer.dart';
 
 List<List<MarkerClustererStyle>> styles = [
   [
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/people35.png'
       ..height = 35
       ..width = 35
-      ..anchor = new Point(16, 0)
+      ..anchor = Point(16, 0)
       ..textColor = '#ff00ff'
       ..textSize = 10,
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/people45.png'
       ..height = 45
       ..width = 45
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textColor = '#ff0000'
       ..textSize = 11,
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/people55.png'
       ..height = 55
       ..width = 55
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textColor = '#ffffff'
       ..textSize = 12
   ],
   [
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/conv30.png'
       ..height = 27
       ..width = 30
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textColor = '#ff00ff'
       ..textSize = 10,
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/conv40.png'
       ..height = 36
       ..width = 40
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textColor = '#ff0000'
       ..textSize = 11,
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/conv50.png'
       ..width = 50
       ..height = 45
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textSize = 12
   ],
   [
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/heart30.png'
       ..height = 26
       ..width = 30
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textColor = '#ff00ff'
       ..textSize = 10,
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/heart40.png'
       ..height = 35
       ..width = 40
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textColor = '#ff0000'
       ..textSize = 11,
-    new MarkerClustererStyle()
+    MarkerClustererStyle()
       ..url = '../images/heart50.png'
       ..width = 50
       ..height = 44
-      ..anchor = new Point(24, 0)
+      ..anchor = Point(24, 0)
       ..textSize = 12
   ]
 ];
 
-var markerClusterer = null;
-var map = null;
+MarkerClusterer markerClusterer;
+GMap map;
 Map data = null;
 var imageUrl =
     'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=FFFFFF,008CFF,000000&ext=.png';
@@ -87,18 +87,18 @@ var imageUrl =
 Future<Null> main() async {
   data = json.decode(await HttpRequest.getString('data.json'));
 
-  map = new GMap(
+  map = GMap(
       document.getElementById('map'),
-      new MapOptions()
+      MapOptions()
         ..zoom = 2
-        ..center = new LatLng(39.91, 116.38)
+        ..center = LatLng(39.91, 116.38)
         ..mapTypeId = MapTypeId.ROADMAP);
 
   var refresh = document.getElementById('refresh');
-  event.addDomListener(refresh, 'click', (_) => refreshMap());
+  Event.addDomListener(refresh, 'click', (_) => refreshMap());
 
   var clear = document.getElementById('clear');
-  event.addDomListener(clear, 'click', (e) => clearClusters(e));
+  Event.addDomListener(clear, 'click', (e) => clearClusters(e));
   refreshMap();
 }
 
@@ -106,13 +106,13 @@ void refreshMap() {
   markerClusterer?.clearMarkers();
 
   var markers = [];
-  var markerImage = new Icon()
+  var markerImage = Icon()
     ..url = imageUrl
-    ..size = new Size(24, 32);
+    ..size = Size(24, 32);
   for (var i = 0; i < 1000; ++i) {
-    var latLng = new LatLng(
-        data['photos'][i]['latitude'], data['photos'][i]['longitude']);
-    var marker = new Marker()
+    var latLng =
+        LatLng(data['photos'][i]['latitude'], data['photos'][i]['longitude']);
+    var marker = Marker()
       ..position = latLng
       ..draggable = true
       ..icon = markerImage;
@@ -128,10 +128,10 @@ void refreshMap() {
   zoom = zoom == -1 ? null : zoom;
   size = size == -1 ? null : size;
   style = style == -1 ? null : style;
-  markerClusterer = new MarkerClusterer(
+  markerClusterer = MarkerClusterer(
       map,
       markers,
-      new MarkerClustererOptions()
+      MarkerClustererOptions()
         ..maxZoom = zoom
         ..gridSize = size
         ..styles = style == null ? null : styles[style]);

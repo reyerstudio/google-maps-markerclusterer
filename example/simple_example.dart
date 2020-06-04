@@ -9,11 +9,11 @@ import 'package:google_maps/google_maps.dart';
 import 'package:google_maps_markerclusterer/markerclusterer.dart';
 
 Future<Null> main() async {
-  var center = new LatLng(37.4419, -122.1419);
+  var center = LatLng(37.4419, -122.1419);
 
-  var map = new GMap(
+  var map = GMap(
       document.getElementById('map'),
-      new MapOptions()
+      MapOptions()
         ..zoom = 3
         ..center = center
         ..mapTypeId = MapTypeId.ROADMAP);
@@ -23,10 +23,10 @@ Future<Null> main() async {
   List<Marker> markers = [];
   for (var i = 0; i < 100; i++) {
     Map dataPhoto = data['photos'][i];
-    var latLng = new LatLng(dataPhoto['latitude'], dataPhoto['longitude']);
-    var marker = new Marker()..position = latLng;
+    var latLng = LatLng(dataPhoto['latitude'], dataPhoto['longitude']);
+    var marker = Marker()..position = latLng;
     markers.add(marker);
   }
 
-  var markerCluster = new MarkerClusterer(map, markers);
+  MarkerClusterer(map, markers);
 }
