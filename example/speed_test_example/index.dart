@@ -39,10 +39,10 @@ Future<Null> main() async {
 void showMarkers() {
   markers = [];
 
-  var type = 1;
-  if ((document.getElementById('usegmm') as CheckboxInputElement).checked) {
-    type = 0;
-  }
+  // var type = 1;
+  // if ((document.getElementById('usegmm') as CheckboxInputElement).checked) {
+  //   type = 0;
+  // }
 
   markerClusterer?.clearMarkers();
 

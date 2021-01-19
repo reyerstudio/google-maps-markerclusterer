@@ -3,4 +3,4 @@
 
 library google_maps_markerwithlabel;
 
-export 'src/markerclusterer.dart';
+export 'src/markerclusterer.js.g.dart';

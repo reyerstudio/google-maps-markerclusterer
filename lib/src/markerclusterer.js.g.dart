@@ -1,16 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of google_maps_markerclusterer;
-
 // **************************************************************************
 // JsWrappingGenerator
 // **************************************************************************
 
-@GeneratedFrom(_MarkerClusterer)
+// Copyright (c) 2017, Stéphane Este-Gracias. All rights reserved. Use of this source code
+// is governed by a BSD-style license that can be found in the LICENSE file.
+
 @JS()
-@anonymous
+library google_maps_markerclusterer;
+
+import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
+
+@JS()
 class MarkerClusterer extends OverlayView {
-  external factory MarkerClusterer(GMap map,
+  external MarkerClusterer(GMap map,
       [List<Marker> markers, MarkerClustererOptions opts]);
 
   external void addMarker(Marker marker, [bool noDraw]);
@@ -25,11 +30,7 @@ class MarkerClusterer extends OverlayView {
 
   external num getGridSize();
 
-  external List<Marker> getMarkers();
-
   external num getMaxZoom();
-
-  external List<MarkerClustererStyle> getStyles();
 
   external num getTotalClusters();
 
@@ -43,8 +44,6 @@ class MarkerClusterer extends OverlayView {
 
   external void resetViewport();
 
-  external void setCalculator(Function calculator);
-
   external void setGridSize(num size);
 
   external void setMaxZoom(num maxZoom);
@@ -52,11 +51,21 @@ class MarkerClusterer extends OverlayView {
   external void setStyles(List<MarkerClustererStyle> styles);
 }
 
-@GeneratedFrom(_MarkerClustererOptions)
+extension MarkerClusterer$Ext on MarkerClusterer {
+  List<Marker> getMarkers() =>
+      callMethod(this, 'getMarkers', [])?.cast<Marker>();
+
+  List<MarkerClustererStyle> getStyles() =>
+      callMethod(this, 'getStyles', [])?.cast<MarkerClustererStyle>();
+
+  void setCalculator(Function calculator) {
+    callMethod(this, 'setCalculator', [allowInterop(calculator)]);
+  }
+}
+
 @JS()
-@anonymous
 class MarkerClustererOptions {
-  external factory MarkerClustererOptions();
+  external MarkerClustererOptions();
 
   external num get gridSize;
 
@@ -85,17 +94,20 @@ class MarkerClustererOptions {
   external num get minimumClusterSize;
 
   external set minimumClusterSize(num value);
-
-  external List<MarkerClustererStyle> get styles;
-
-  external set styles(List<MarkerClustererStyle> value);
 }
 
-@GeneratedFrom(_MarkerClustererStyle)
+extension MarkerClustererOptions$Ext on MarkerClustererOptions {
+  List<MarkerClustererStyle> get styles =>
+      getProperty(this, 'styles')?.cast<MarkerClustererStyle>();
+
+  set styles(List<MarkerClustererStyle> value) {
+    setProperty(this, 'styles', value);
+  }
+}
+
 @JS()
-@anonymous
 class MarkerClustererStyle {
-  external factory MarkerClustererStyle();
+  external MarkerClustererStyle();
 
   external String get url;
 

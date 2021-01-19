@@ -7,12 +7,9 @@ library google_maps_markerclusterer;
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
-part 'markerclusterer.g.dart';
-
 @JsName()
-@anonymous
-abstract class _MarkerClusterer extends OverlayView {
-  factory _MarkerClusterer(GMap map,
+abstract class MarkerClusterer extends OverlayView {
+  factory MarkerClusterer(GMap map,
           [List<Marker> markers, MarkerClustererOptions opts]) =>
       null;
 
@@ -38,9 +35,8 @@ abstract class _MarkerClusterer extends OverlayView {
 }
 
 @JsName()
-@anonymous
-abstract class _MarkerClustererOptions {
-  factory _MarkerClustererOptions() => null;
+abstract class MarkerClustererOptions {
+  factory MarkerClustererOptions() => null;
 
   num gridSize;
   num maxZoom;
@@ -53,9 +49,8 @@ abstract class _MarkerClustererOptions {
 }
 
 @JsName()
-@anonymous
-abstract class _MarkerClustererStyle {
-  factory _MarkerClustererStyle() => null;
+abstract class MarkerClustererStyle {
+  factory MarkerClustererStyle() => null;
 
   String url;
   num height;
