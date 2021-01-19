@@ -105,7 +105,7 @@ Future<Null> main() async {
 void refreshMap() {
   markerClusterer?.clearMarkers();
 
-  var markers = [];
+  var markers = <Marker>[];
   var markerImage = Icon()
     ..url = imageUrl
     ..size = Size(24, 32);
