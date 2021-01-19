@@ -129,12 +129,13 @@ void refreshMap() {
   size = size == -1 ? null : size;
   style = style == -1 ? null : style;
   markerClusterer = MarkerClusterer(
-      map,
-      markers,
-      MarkerClustererOptions()
-        ..maxZoom = zoom
-        ..gridSize = size
-        ..styles = style == null ? null : styles[style]);
+    map,
+    markers,
+    // MarkerClustererOptions()
+    //   ..maxZoom = zoom
+    //   ..gridSize = size
+    //   ..styles = style == null ? null : styles[style],
+  );
 }
 
 void clearClusters(e) {
