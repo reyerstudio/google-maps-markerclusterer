@@ -64,8 +64,9 @@ extension MarkerClusterer$Ext on MarkerClusterer {
 }
 
 @JS()
+@anonymous
 class MarkerClustererOptions {
-  external MarkerClustererOptions();
+  external factory MarkerClustererOptions();
 
   external num get gridSize;
 
@@ -106,8 +107,9 @@ extension MarkerClustererOptions$Ext on MarkerClustererOptions {
 }
 
 @JS()
+@anonymous
 class MarkerClustererStyle {
-  external MarkerClustererStyle();
+  external factory MarkerClustererStyle();
 
   external String get url;
 
