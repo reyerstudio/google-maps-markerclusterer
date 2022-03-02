@@ -11,7 +11,7 @@ import 'package:js_wrapping/js_wrapping.dart';
 abstract class MarkerClusterer extends OverlayView {
   factory MarkerClusterer(GMap map,
           [List<Marker> markers, MarkerClustererOptions opts]) =>
-      null;
+      $js();
 
   void addMarker(Marker marker, [bool noDraw]);
   void addMarkers(List<Marker> markers, [bool noDraw]);
@@ -35,8 +35,9 @@ abstract class MarkerClusterer extends OverlayView {
 }
 
 @JsName()
+@anonymous
 abstract class MarkerClustererOptions {
-  factory MarkerClustererOptions() => null;
+  factory MarkerClustererOptions() => $js();
 
   num gridSize;
   num maxZoom;
@@ -49,8 +50,9 @@ abstract class MarkerClustererOptions {
 }
 
 @JsName()
+@anonymous
 abstract class MarkerClustererStyle {
-  factory MarkerClustererStyle() => null;
+  factory MarkerClustererStyle() => $js();
 
   String url;
   num height;
